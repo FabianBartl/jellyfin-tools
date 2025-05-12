@@ -65,15 +65,15 @@ def write_font_center(
     pillow_image: Image = Image.fromarray(image)
     draw: ImageDraw = ImageDraw.Draw(pillow_image)
 
-    # Get the height and width of the text message for centering
+    # Get the width and height of the text message for centering
     _, _, draw_width, draw_height = draw.textbbox(
         (0, 0), message, font=font, features=features
     )
 
-    # Figure out how far below the baseline the text goes
+    # Figure out how far below the baseline of the last text line goes
     # "ls" is "left baseline" as our (0,0) anchor
     _, _, _, descender_height = draw.textbbox(
-        (0, 0), message, anchor="ls", font=font, features=features
+        (0, 0), message.split("\n")[-1], anchor="ls", font=font, features=features
     )
 
     draw_height -= descender_height
