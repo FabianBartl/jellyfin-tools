@@ -38,7 +38,7 @@ def run(args):
         title = args.title[t]
         
         # replace pseudo line breaks and support escaped backslash
-        title = re.sub(r"[^\\]\\n", "\n", title)
+        title = re.sub(r"[^\\]?\\n", "\n", title)
         title = title.replace("\\\\", "\\")
         
         output = create_library_image(
